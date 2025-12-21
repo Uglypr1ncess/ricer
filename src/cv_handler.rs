@@ -16,24 +16,12 @@ impl CvHandler {
     
         let mut program_paths: HashMap<String, String> = HashMap::new();
 
-        let mut program = "";
-        let mut path = "";
-
-        let mut buffer: String = String::new();
-        let mut counter = 0;
-
-        for letter in contents.chars() {
-            if letter == ',' && counter == 0 {
-                program = &buffer;
-                counter = 1;
-            } else if letter == ',' && counter == 1 {
-                path = &buffer;
-                program_paths.insert(String::from(program), String::from(path));
-                counter = 0;
-            } else {
-                buffer.push(letter);
+       for line in contents.lines(){
+           let parts: Vec<&str> = line.split(',').collect();
+            if parts.len() == 2 {
+                program_paths.insert(parts[0].to_string(), parts[1].to_string());
             }
-        }
+       } 
 
         for (program, path) in &program_paths {
             println!("program: {}, path: {}", program, path);

@@ -1,5 +1,5 @@
 pub mod lol {
-    pub fn greet(){
+    pub fn greet() {
         println!("hello world");
     }
 }
