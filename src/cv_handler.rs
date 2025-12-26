@@ -10,7 +10,7 @@ impl CvHandler {
         CvHandler { file_path: path }
     }
 
-    pub fn read_cv(&self) {
+    pub fn read_cv(&self) -> HashMap<String, String> {
         let contents = fs::read_to_string(&self.file_path)
             .expect("Can't read file path");
     
@@ -21,10 +21,7 @@ impl CvHandler {
             if parts.len() == 2 {
                 program_paths.insert(parts[0].to_string(), parts[1].to_string());
             }
-       } 
-
-        for (program, path) in &program_paths {
-            println!("program: {}, path: {}", program, path);
-        }
+       }
+       program_paths
     }
 }
